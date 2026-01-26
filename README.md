@@ -111,7 +111,6 @@ En la página de bienvenida verás:
 -  Nombre (si usaste GitHub)
 -  Método de autenticación
 -  Fecha de registro
--  **Token JWT** completo (con mostrar/ocultar y copiar)
 
 ## Persistencia de Sesión
 
