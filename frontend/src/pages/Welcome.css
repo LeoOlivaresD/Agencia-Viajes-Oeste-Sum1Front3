@@ -113,6 +113,8 @@
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .token-section {
