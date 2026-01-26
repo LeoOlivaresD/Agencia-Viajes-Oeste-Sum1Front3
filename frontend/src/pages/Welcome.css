@@ -293,8 +293,15 @@
   }
 
   .info-value {
-    text-align: left;
-  }
+  color: #333;
+  font-weight: 600;
+  text-align: right;
+  word-break: break-word;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center; 
+}
 
   .id-value {
     justify-content: flex-start;
