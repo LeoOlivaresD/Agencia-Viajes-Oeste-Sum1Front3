@@ -10,10 +10,26 @@ function Register() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [passwordValid, setPasswordValid] = useState(null);
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
+  };
+
+  const validatePasswordStrength = (pass) => {
+  if (pass.length === 0) {
+      setPasswordValid(null);
+      return;
+  }
+    
+  const hasLength = pass.length >= 8;
+  const hasUpperCase = /[A-Z]/.test(pass);
+  const hasNumber = /[0-9]/.test(pass);
+  const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+    
+  const isValid = hasLength && hasUpperCase && hasNumber && hasSymbol;
+    setPasswordValid(isValid);
   };
 
   const handleSubmit = async (e) => {
@@ -102,13 +118,17 @@ function Register() {
           <div className="form-group">
             <label htmlFor="password">Contraseña</label>
             <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mín. 8 caracteres, mayúscula, número y símbolo"
-              disabled={loading}
-            />
+  type="password"
+  id="password"
+  value={password}
+  onChange={(e) => {
+    setPassword(e.target.value);
+    validatePasswordStrength(e.target.value);
+  }}
+  placeholder="Mín. 8 caracteres, mayúscula, número y símbolo"
+  disabled={loading}
+  className={passwordValid === null ? '' : passwordValid ? 'input-valid' : 'input-invalid'}
+/>
           </div>
 
           <div className="form-group">
