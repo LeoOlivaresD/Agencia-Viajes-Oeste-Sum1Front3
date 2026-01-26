@@ -5,18 +5,14 @@ import './Welcome.css';
 
 function Welcome() {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState('');
   const [loading, setLoading] = useState(true);
-  const [showToken, setShowToken] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadUserProfile = async () => {
       try {
         const response = await authService.getProfile();
-        const userToken = authService.getToken();
         setUser(response.user);
-        setToken(userToken);
       } catch (error) {
         console.error('Error cargando perfil:', error);
         authService.logout();
@@ -140,30 +136,7 @@ function Welcome() {
           )}
         </div>
 
-        <div className="token-section">
-          <h3 className="section-title">Token de Sesión (JWT)</h3>
-          <div className="token-controls">
-            <button 
-              onClick={() => setShowToken(!showToken)} 
-              className="btn btn-secondary"
-            >
-              {showToken ? 'Ocultar Token' : 'Mostrar Token'}
-            </button>
-            {showToken && (
-              <button 
-                onClick={() => copyToClipboard(token)} 
-                className="btn btn-secondary"
-              >
-                Copiar Token
-              </button>
-            )}
-          </div>
-          {showToken && (
-            <div className="token-display">
-              <code>{token}</code>
-            </div>
-          )}
-        </div>
+        
 
         <div className="welcome-actions">
           <button onClick={handleLogout} className="btn btn-logout">
