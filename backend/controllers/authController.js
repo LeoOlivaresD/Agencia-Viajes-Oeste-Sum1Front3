@@ -22,12 +22,23 @@ const register = async (req, res) => {
       });
     }
 
-    if (password.length < 6) {
-      return res.status(400).json({
-        success: false,
-        message: 'La contraseña debe tener al menos 6 caracteres'
-      });
-    }
+  if (password.length < 8) {
+    return res.status(400).json({
+      success: false,
+      message: 'La contraseña debe tener al menos 8 caracteres'
+    });
+  }
+
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  if (!hasUpperCase || !hasNumber || !hasSymbol) {
+    return res.status(400).json({
+      success: false,
+      message: 'La contraseña debe contener mayúscula, número y símbolo'
+    });
+  }
 
     const existingUser = findUserByEmail(email);
     if (existingUser) {
