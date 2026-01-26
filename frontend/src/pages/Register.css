@@ -117,7 +117,25 @@
 .login-link a:hover {
   text-decoration: underline;
 }
+.input-valid {
+  border-color: #28a745 !important;
+  background-color: #f0fff4;
+}
 
+.input-invalid {
+  border-color: #dc3545 !important;
+  background-color: #fff5f5;
+}
+
+.form-group input.input-valid:focus {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.form-group input.input-invalid:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
 @media (max-width: 768px) {
   .register-card {
     padding: 40px 20px;
