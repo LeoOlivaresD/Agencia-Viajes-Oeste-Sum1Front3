@@ -30,39 +30,59 @@ function Register() {
       return;
     }
 
-    if (password.length < 6) {
-      setError('La contraseña debe tener al menos 6 caracteres');
+    // Validación de contraseña
+    if (password.length < 8) {
+      setError('La contraseña debe tener al menos 8 caracteres');
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (!hasUpperCase) {
+      setError('La contraseña debe contener al menos una letra mayúscula');
       return;
     }
 
-    setLoading(true);
-
-    try {
-      const response = await authService.register(email, password);
-      
-      if (response.success) {
-        alert('Registro exitoso. Por favor inicie sesión.');
-        navigate('/');
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error al registrarse');
-    } finally {
-      setLoading(false);
+    if (!hasNumber) {
+      setError('La contraseña debe contener al menos un número');
+      return;
     }
-  };
 
-  return (
-    <div className="register-container">
-      <div className="register-card">
-        <div className="register-header">
-          <h1>Crear Cuenta</h1>
-          <p>Únete a Agencia de Viajes Oeste</p>
-        </div>
+    if (!hasSymbol) {
+      setError('La contraseña debe contener al menos un símbolo (!@#$%^&*...)');
+      return;
+    }
+
+        if (password !== confirmPassword) {
+          setError('Las contraseñas no coinciden');
+          return;
+        }
+
+        setLoading(true);
+
+        try {
+          const response = await authService.register(email, password);
+          
+          if (response.success) {
+            alert('Registro exitoso. Por favor inicie sesión.');
+            navigate('/');
+          }
+        } catch (err) {
+          setError(err.response?.data?.message || 'Error al registrarse');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      return (
+        <div className="register-container">
+          <div className="register-card">
+            <div className="register-header">
+              <h1>Crear Cuenta</h1>
+              <p>Únete a Agencia de Viajes Oeste</p>
+            </div>
 
         {error && <div className="error-message">{error}</div>}
 
@@ -86,7 +106,7 @@ function Register() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 6 caracteres"
+              placeholder="Mín. 8 caracteres, mayúscula, número y símbolo"
               disabled={loading}
             />
           </div>
