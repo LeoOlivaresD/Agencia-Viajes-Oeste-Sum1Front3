@@ -136,7 +136,53 @@ function Welcome() {
           )}
         </div>
 
-        
+        <div className="travel-menu">
+  <h3 className="section-title">Gestión de Viajes</h3>
+  
+  <div className="travel-cards">
+    <div className="travel-card">
+      <div className="card-icon">✈️</div>
+      <h4>Reservar Vuelo</h4>
+      <p>Encuentra los mejores destinos y precios para tu próximo viaje</p>
+      <button className="btn btn-card">Explorar Vuelos</button>
+    </div>
+
+    <div className="travel-card">
+      <div className="card-icon">🏨</div>
+      <h4>Hoteles</h4>
+      <p>Reserva hoteles con las mejores comodidades y ubicaciones</p>
+      <button className="btn btn-card">Ver Hoteles</button>
+    </div>
+
+    <div className="travel-card">
+      <div className="card-icon">🎫</div>
+      <h4>Paquetes Turísticos</h4>
+      <p>Ofertas especiales con todo incluido para unas vacaciones perfectas</p>
+      <button className="btn btn-card">Ver Paquetes</button>
+    </div>
+
+    <div className="travel-card">
+      <div className="card-icon">🚗</div>
+      <h4>Renta de Autos</h4>
+      <p>Alquila el vehículo ideal para moverte libremente en tu destino</p>
+      <button className="btn btn-card">Rentar Auto</button>
+    </div>
+
+    <div className="travel-card">
+      <div className="card-icon">📋</div>
+      <h4>Mis Reservas</h4>
+      <p>Consulta y gestiona todas tus reservas activas</p>
+      <button className="btn btn-card">Ver Reservas</button>
+    </div>
+
+    <div className="travel-card">
+      <div className="card-icon">💳</div>
+      <h4>Métodos de Pago</h4>
+      <p>Administra tus tarjetas y métodos de pago guardados</p>
+      <button className="btn btn-card">Gestionar Pagos</button>
+    </div>
+  </div>
+</div>
 
         <div className="welcome-actions">
           <button onClick={handleLogout} className="btn btn-logout">
