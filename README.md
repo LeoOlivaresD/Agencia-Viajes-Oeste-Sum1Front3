@@ -2,7 +2,7 @@
 
 Proyecto de autenticación desarrollado para el curso Desarrollo Frontend III de Duoc UC.
 
-## 🚀 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Backend
 - Node.js + Express
@@ -12,25 +12,25 @@ Proyecto de autenticación desarrollado para el curso Desarrollo Frontend III de
 - Almacenamiento en JSON
 
 ### Frontend  
-- ⚡ **React 18 + Vite** (Ultra rápido)
+- **React 18 + Vite** (Ultra rápido)
 - React Router v6
 - Axios
 - CSS3
 
-## ✨ Características
+## Características
 
-- ✅ Registro de usuarios con validación
-- ✅ Login local con encriptación de contraseñas (bcrypt)
-- ✅ Autenticación OAuth 2.0 con GitHub
-- ✅ Tokens JWT para sesiones seguras
-- ✅ **Persistencia de sesión** (no necesitas volver a loguearte)
-- ✅ Página de bienvenida con datos completos del usuario
-- ✅ **Visualización del Token JWT** con botón copiar
-- ✅ **ID de usuario** con botón copiar
-- ✅ Cierre de sesión funcional
-- ✅ Diseño responsive y moderno
+- Registro de usuarios con validación
+- Login local con encriptación de contraseñas (bcrypt)
+- Autenticación OAuth 2.0 con GitHub
+- Tokens JWT para sesiones seguras
+- **Persistencia de sesión** (no necesitas volver a loguearte)
+- Página de bienvenida con datos completos del usuario
+- **Visualización del Token JWT** con botón copiar
+- **ID de usuario** con botón copiar
+- Cierre de sesión funcional
+- Diseño responsive y moderno
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 agencia-viajes-oeste/
@@ -54,7 +54,7 @@ agencia-viajes-oeste/
     └── package.json
 ```
 
-## 🔧 Instalación y Configuración
+## Instalación y Configuración
 
 ### 1. Instalar Backend
 
@@ -64,10 +64,8 @@ npm install
 ```
 
 **El archivo `.env` ya contiene TUS credenciales de GitHub:**
-- Client ID: `Ov23li1l8UR1LlXmKe1w`
-- Client Secret: `5e31a81a158e94ace44d6dbba96058d4959db559`
-
-⚠️ **IMPORTANTE**: Estas credenciales están expuestas. Te recomiendo regenerarlas en GitHub después de probar.
+- Client ID: ``
+- Client Secret: ``
 
 ### 2. Instalar Frontend
 
@@ -76,7 +74,7 @@ cd frontend
 npm install
 ```
 
-## 🚀 Ejecutar el Proyecto
+##  Ejecutar el Proyecto
 
 ### Terminal 1 - Backend:
 ```bash
@@ -92,7 +90,7 @@ npm run dev
 ```
 Aplicación corriendo en: `http://localhost:3000`
 
-## 🎯 Probar la Aplicación
+##  Probar la Aplicación
 
 ### Opción 1: Registro Local
 1. Ve a `http://localhost:3000`
@@ -108,14 +106,14 @@ Aplicación corriendo en: `http://localhost:3000`
 
 ### Ver información completa:
 En la página de bienvenida verás:
-- 📋 ID de usuario (con botón copiar)
-- 📧 Email
-- 👤 Nombre (si usaste GitHub)
-- 🔐 Método de autenticación
-- 📅 Fecha de registro
-- 🔑 **Token JWT** completo (con mostrar/ocultar y copiar)
+-  ID de usuario (con botón copiar)
+-  Email
+-  Nombre (si usaste GitHub)
+-  Método de autenticación
+-  Fecha de registro
+-  **Token JWT** completo (con mostrar/ocultar y copiar)
 
-## 🔄 Persistencia de Sesión
+## Persistencia de Sesión
 
 **Novedad**: La sesión se mantiene automáticamente:
 - Si cierras el navegador y vuelves a abrir
@@ -126,7 +124,7 @@ En la página de bienvenida verás:
   - El token expira (24 horas)
   - Limpias el localStorage
 
-## 📡 Endpoints de la API
+##  Endpoints de la API
 
 ```
 POST   /api/auth/register        # Registrar usuario
@@ -136,18 +134,7 @@ GET    /api/auth/github          # Iniciar OAuth GitHub
 GET    /api/auth/github/callback # Callback GitHub
 ```
 
-## ⚡ Vite vs Create React App
-
-| Característica | Create React App | ⚡ Vite |
-|----------------|------------------|---------|
-| Tiempo de inicio | ~30 segundos | ~1 segundo |
-| Hot Reload | Lento | Instantáneo |
-| Variables env | `REACT_APP_` | `VITE_` |
-| Acceso vars | `process.env.X` | `import.meta.env.X` |
-| Build | Lento | Ultra rápido |
-| Comando dev | `npm start` | `npm run dev` |
-
-## 🛠️ Comandos Útiles
+##  Comandos Útiles
 
 ### Desarrollo
 ```bash
@@ -173,57 +160,7 @@ rm backend/data/users.json
 echo '{"users": []}' > backend/data/users.json
 ```
 
-## 🔒 Seguridad
-
-⚠️ **MUY IMPORTANTE**:
-- Las credenciales de GitHub en este proyecto están expuestas
-- **Regenera el Client Secret** en GitHub inmediatamente:
-  1. Ve a https://github.com/settings/developers
-  2. Click en tu OAuth App
-  3. "Generate a new client secret"
-  4. Actualiza `.env` con el nuevo secret
-- NUNCA subas el archivo `.env` a GitHub
-- El `.gitignore` ya está configurado para protegerlo
-
-## 📝 Notas de Desarrollo
-
-### Diferencias clave con Vite:
-1. Los archivos React usan extensión `.jsx`
-2. Variables de entorno: `import.meta.env.VITE_X`
-3. Punto de entrada: `main.jsx` en lugar de `index.js`
-4. HTML base: `index.html` en la raíz (no en public/)
-
-## 🎓 Entrega del Proyecto
-
-Para entregar en el AVA:
-
-1. Sube el proyecto a GitHub
-2. **Asegúrate de NO incluir**:
-   - `node_modules/`
-   - `.env` (con tus credenciales)
-   - `data/users.json` (con usuarios reales)
-3. Incluye `.env.example` con valores de ejemplo
-4. Copia la URL del repositorio
-5. Súbela al AVA
-
-## 🆘 Solución de Problemas
-
-**Error: "Cannot find module"**
-→ Ejecuta `npm install` en backend y frontend
-
-**Error de CORS**
-→ Asegúrate que ambos servidores estén corriendo
-
-**No funciona GitHub OAuth**
-→ Verifica las credenciales en `.env`
-
-**La sesión no persiste**
-→ Verifica que no estés en modo incógnito
-
-## 👨‍💻 Autor
-
+##  Autor
+Leonardo Olivares
 Proyecto desarrollado para Duoc UC - Desarrollo Frontend III
 
-## 📄 Licencia
-
-Uso académico
