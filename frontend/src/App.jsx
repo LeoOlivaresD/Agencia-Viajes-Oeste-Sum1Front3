@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Welcome from './pages/Welcome';
 import AuthCallback from './pages/AuthCallback';
+import Solicitudes from './pages/Solicitudes';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/solicitudes" element={<Solicitudes />} />
       </Routes>
     </Router>
   );

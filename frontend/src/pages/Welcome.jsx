@@ -169,11 +169,16 @@ function Welcome() {
     </div>
 
     <div className="travel-card">
-      <div className="card-icon">📋</div>
-      <h4>Mis Reservas</h4>
-      <p>Consulta y gestiona todas tus reservas activas</p>
-      <button className="btn btn-card">Ver Reservas</button>
-    </div>
+  <div className="card-icon">📋</div>
+  <h4>Solicitudes de Viaje</h4>
+  <p>Registra y gestiona solicitudes de viaje personalizadas</p>
+  <button 
+    className="btn btn-card"
+    onClick={() => navigate('/solicitudes')}
+  >
+    Gestionar Solicitudes
+  </button>
+</div>
 
     <div className="travel-card">
       <div className="card-icon">💳</div>
