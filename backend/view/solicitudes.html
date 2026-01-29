@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitudes de Viaje - SSR</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .ssr-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      color: #667eea;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #e0e0e0;
+    }
+    
+    .solicitudes-list {
+      margin-top: 20px;
+    }
+    
+    .solicitud-item {
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      transition: all 0.3s;
+    }
+    
+    .solicitud-item:hover {
+      border-color: #667eea;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .solicitud-item h3 {
+      color: #667eea;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .solicitud-item p {
+      color: #555;
+      font-size: 1rem;
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+    
+    .solicitud-item p strong {
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .no-solicitudes {
+      text-align: center;
+      color: #999;
+      font-size: 1.2rem;
+      padding: 60px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"><!--SSR_CONTENT--></div>
+</body>
+</html>
