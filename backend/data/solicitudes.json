@@ -1,4 +1,20 @@
 {
-  "solicitudes": [],
-  "lastId": 1117
+  "solicitudes": [
+    {
+      "dni": "16414595-0",
+      "nombreCliente": "Esteban Castro Paredes",
+      "origen": "Santiago, Chile",
+      "destino": "Madrid, España",
+      "tipoViaje": "turismo",
+      "fechaSalida": "2026-03-04",
+      "horaSalida": "10:00",
+      "fechaRegreso": "2026-03-12",
+      "horaRegreso": "17:00",
+      "estado": "pendiente",
+      "email": "esteban@ejemplo.com",
+      "id": 1118,
+      "fechaRegistro": "2026-01-29T03:00:12.020Z"
+    }
+  ],
+  "lastId": 1118
 }
