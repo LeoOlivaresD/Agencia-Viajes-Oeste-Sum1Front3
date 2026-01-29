@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const solicitudesRoutes = require('./routes/solicitudes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,12 +28,16 @@ app.get('/', (req, res) => {
       login: 'POST /api/auth/login',
       profile: 'GET /api/auth/profile (requiere token)',
       githubLogin: 'GET /api/auth/github',
-      githubCallback: 'GET /api/auth/github/callback'
+      githubCallback: 'GET /api/auth/github/callback',
+      solicitudes: 'GET /api/solicitudes (requiere token)',
+      crearSolicitud: 'POST /api/solicitudes (requiere token)',
+      solicitudById: 'GET /api/solicitudes/:id (requiere token)'
     }
   });
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/solicitudes', solicitudesRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
