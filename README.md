@@ -1,165 +1,221 @@
-# Agencia de Viajes Oeste - Portal de Gestión
+# Agencia de Viajes Oeste - Sistema con SSR
 
-Proyecto de autenticación desarrollado para el curso Desarrollo Frontend III de Duoc UC.
+Proyecto desarrollado para el curso Desarrollo Frontend III de Duoc UC, implementando Server-Side Rendering (SSR) con React y Node.js.
 
-## Tecnologías Utilizadas
+## Descripcion del Proyecto
+
+Sistema de gestion de solicitudes de viaje que permite:
+- Autenticacion de usuarios (local y GitHub OAuth)
+- Registro y visualizacion de solicitudes de viaje
+- Renderizado del lado del servidor (SSR) para mejor rendimiento y SEO
+
+## Tecnologias Utilizadas
 
 ### Backend
 - Node.js + Express
-- JWT (jsonwebtoken)
-- bcryptjs
+- JWT para autenticacion
+- bcryptjs para encriptacion de contraseñas
 - GitHub OAuth 2.0
-- Almacenamiento en JSON
+- React Server-Side Rendering (ReactDOMServer)
+- Almacenamiento en archivos JSON
 
-### Frontend  
-- **React 18 + Vite** (Ultra rápido)
+### Frontend
+- React 18 + Vite
 - React Router v6
 - Axios
 - CSS3
 
-## Características
-
-- Registro de usuarios con validación
-- Login local con encriptación de contraseñas (bcrypt)
-- Autenticación OAuth 2.0 con GitHub
-- Tokens JWT para sesiones seguras
-- **Persistencia de sesión** (no necesitas volver a loguearte)
-- Página de bienvenida con datos completos del usuario
-- **Visualización del Token JWT** con botón copiar
-- **ID de usuario** con botón copiar
-- Cierre de sesión funcional
-- Diseño responsive y moderno
-
-##  Estructura del Proyecto
-
+## Estructura del Proyecto
 ```
 agencia-viajes-oeste/
-├── backend/              # Servidor Node.js + Express
-│   ├── controllers/      # Lógica de autenticación
-│   ├── middleware/       # Middleware JWT
-│   ├── routes/          # Rutas de API
-│   ├── utils/           # Utilidades
-│   ├── data/            # Base de datos JSON
-│   ├── .env             # Variables de entorno (TUS CREDENCIALES)
-│   └── server.js        # Servidor principal
+├── backend/
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── githubAuthController.js
+│   │   ├── solicitudesController.js
+│   │   └── ssrController.js
+│   ├── data/
+│   │   ├── users.json
+│   │   └── solicitudes.json
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── solicitudes.js
+│   │   └── ssr.js
+│   ├── ssr/
+│   │   └── renderApp.js
+│   ├── utils/
+│   │   ├── fileHandler.js
+│   │   └── solicitudesHandler.js
+│   ├── views/
+│   │   └── solicitudes.html
+│   ├── .env
+│   ├── package.json
+│   └── server.js
 │
-└── frontend/            # React + Vite
-    ├── index.html       # HTML principal
-    ├── vite.config.js   # Configuración de Vite
+└── frontend/
     ├── src/
-    │   ├── pages/       # Componentes de páginas (.jsx)
-    │   ├── services/    # Servicios de API
-    │   ├── App.jsx      # Componente principal
-    │   └── main.jsx     # Punto de entrada
-    └── package.json
+    │   ├── pages/
+    │   │   ├── Home.jsx
+    │   │   ├── Register.jsx
+    │   │   ├── Welcome.jsx
+    │   │   ├── Solicitudes.jsx
+    │   │   └── AuthCallback.jsx
+    │   ├── services/
+    │   │   ├── authService.js
+    │   │   └── solicitudesService.js
+    │   ├── App.jsx
+    │   └── main.jsx
+    ├── package.json
+    └── vite.config.js
 ```
 
-## Instalación y Configuración
+## Instalacion
 
-### 1. Instalar Backend
+### Prerequisitos
+- Node.js v18 o superior
+- npm
 
+### 1. Clonar el repositorio
+```bash
+git clone [URL_DEL_REPOSITORIO]
+cd agencia-viajes-oeste
+```
+
+### 2. Instalar dependencias del backend
 ```bash
 cd backend
 npm install
 ```
 
-**El archivo `.env` ya contiene TUS credenciales de GitHub:**
-- Client ID: ``
-- Client Secret: ``
+### 3. Configurar variables de entorno
 
-### 2. Instalar Frontend
+Edita el archivo `backend/.env` con tus credenciales de GitHub OAuth:
+```env
+PORT=5000
+NODE_ENV=development
+JWT_SECRET=tu_clave_secreta_aqui
+GITHUB_CLIENT_ID=tu_github_client_id
+GITHUB_CLIENT_SECRET=tu_github_client_secret
+GITHUB_CALLBACK_URL=http://localhost:5000/api/auth/github/callback
+FRONTEND_URL=http://localhost:3000
+```
 
+### 4. Instalar dependencias del frontend
 ```bash
 cd frontend
 npm install
 ```
 
-##  Ejecutar el Proyecto
+## Ejecucion
 
-### Terminal 1 - Backend:
+### Iniciar el backend
 ```bash
 cd backend
 npm start
 ```
+
 Servidor corriendo en: `http://localhost:5000`
 
-### Terminal 2 - Frontend (Vite):
+### Iniciar el frontend
+
+En otra terminal:
 ```bash
 cd frontend
 npm run dev
 ```
-Aplicación corriendo en: `http://localhost:3000`
 
-##  Probar la Aplicación
+Aplicacion corriendo en: `http://localhost:3000`
 
-### Opción 1: Registro Local
-1. Ve a `http://localhost:3000`
-2. Click en "Regístrate aquí"
-3. Ingresa email y contraseña (mín. 6 caracteres)
-4. Vuelve al login e inicia sesión
+## Endpoints de la API
 
-### Opción 2: GitHub OAuth
-1. Ve a `http://localhost:3000`
-2. Click en "Continuar con GitHub"
-3. Autoriza la aplicación en GitHub
-4. Serás redirigido a tu perfil
+### Autenticacion
+- `POST /api/auth/register` - Registrar usuario
+- `POST /api/auth/login` - Login local
+- `GET /api/auth/profile` - Obtener perfil (requiere token)
+- `GET /api/auth/github` - Iniciar OAuth GitHub
+- `GET /api/auth/github/callback` - Callback GitHub
 
-### Ver información completa:
-En la página de bienvenida verás:
--  ID de usuario (con botón copiar)
--  Email
--  Nombre (si usaste GitHub)
--  Método de autenticación
--  Fecha de registro
+### Solicitudes
+- `GET /api/solicitudes` - Listar solicitudes (requiere token)
+- `POST /api/solicitudes` - Crear solicitud (requiere token)
+- `GET /api/solicitudes/:id` - Obtener solicitud por ID (requiere token)
 
-## Persistencia de Sesión
+### Server-Side Rendering
+- `GET /ssr/solicitudes` - Vista SSR de solicitudes
 
-**Novedad**: La sesión se mantiene automáticamente:
-- Si cierras el navegador y vuelves a abrir
-- Si vas directamente a `http://localhost:3000`
-- El sistema detecta tu sesión activa y te redirige a `/welcome`
-- Solo necesitas volver a loguearte si:
-  - Cierras sesión manualmente
-  - El token expira (24 horas)
-  - Limpias el localStorage
+## Caracteristicas Principales
 
-##  Endpoints de la API
+### 1. Autenticacion
+- Registro de usuarios con validacion de contraseña
+- Login local con JWT
+- Integracion con GitHub OAuth
+- Persistencia de sesion
 
-```
-POST   /api/auth/register        # Registrar usuario
-POST   /api/auth/login           # Login local
-GET    /api/auth/profile         # Obtener perfil (requiere token)
-GET    /api/auth/github          # Iniciar OAuth GitHub
-GET    /api/auth/github/callback # Callback GitHub
-```
+### 2. Gestion de Solicitudes de Viaje
+- Formulario completo de solicitudes
+- Validacion en cliente y servidor
+- Campos incluidos:
+  - ID autogenerado (correlativo desde 1118)
+  - DNI del cliente
+  - Nombre del cliente
+  - Email (opcional)
+  - Origen y destino
+  - Tipo de viaje (negocios, turismo, otros)
+  - Fechas y horas de salida/regreso
+  - Estado (pendiente, en proceso, finalizada)
+  - Fecha de registro automatica
 
-##  Comandos Útiles
+### 3. Server-Side Rendering (SSR)
+- Renderizado de HTML en el servidor usando ReactDOMServer
+- Mejor rendimiento inicial de carga
+- Optimizado para SEO
+- HTML completo disponible en el codigo fuente
 
-### Desarrollo
-```bash
-# Backend con auto-reload
-cd backend && npm run dev
+## Uso del Sistema
 
-# Frontend con Vite
-cd frontend && npm run dev
-```
+### Registro e Inicio de Sesion
 
-### Producción
-```bash
-# Build del frontend
-cd frontend && npm run build
+1. Accede a `http://localhost:3000`
+2. Opcion 1: Registrate con email y contraseña
+3. Opcion 2: Usa GitHub OAuth
+4. Una vez autenticado, seras redirigido al panel principal
 
-# Preview del build
-cd frontend && npm run preview
-```
+### Crear Solicitud de Viaje
 
-### Limpiar base de datos
-```bash
-rm backend/data/users.json
-echo '{"users": []}' > backend/data/users.json
-```
+1. En el panel principal, haz clic en "Gestionar Solicitudes"
+2. Completa el formulario con los datos del viaje
+3. Selecciona el estado de la solicitud
+4. Haz clic en "Crear Solicitud"
+5. La solicitud aparecera en la lista del lado derecho
 
-##  Autor
-Leonardo Olivares
-Proyecto desarrollado para Duoc UC - Desarrollo Frontend III
+### Ver Solicitudes con SSR
 
+1. Accede directamente a `http://localhost:5000/ssr/solicitudes`
+2. Veras todas las solicitudes renderizadas desde el servidor
+3. Puedes verificar el SSR haciendo clic derecho > "Ver codigo fuente"
+
+## Validaciones Implementadas
+
+### Cliente
+- Campos vacios
+- Formato de email
+- Longitud de contraseña
+- Complejidad de contraseña (mayuscula, numero, simbolo)
+
+### Servidor
+- Todos los campos requeridos
+- Formato de email
+- Autenticacion JWT
+- Validacion de tokens
+
+## Persistencia de Datos
+
+Los datos se almacenan en archivos JSON:
+- `backend/data/users.json` - Usuarios registrados
+- `backend/data/solicitudes.json` - Solicitudes de viaje
+
+## Autor
+
+Leonardo Olivares - Proyecto desarrollado para Duoc UC
